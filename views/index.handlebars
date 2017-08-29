@@ -1,0 +1,117 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-3 text-center">
+    </div>
+
+    <div class="col-lg-6 text-center addBurger">
+
+      <h1>Postmate a Burger</h1>
+      <form class="create-update-form" action="/" method="POST">
+
+        <div class="form-group">
+          <label for="ca">Burger Name:</label>
+          <input type="text" id="burgerName" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="meat">What kind of Meat?</label><br>
+          <input type="radio" name="meat" value="1" checked>Beef<br>
+          <input type="radio" name="meat" value="0">Chicken
+        </div>
+
+        <div class="form-group">
+          <label for="cheese">Would you like Cheese?</label><br>
+          <input type="radio" name="cheese" value="1" checked>Yes<br>
+          <input type="radio" name="cheese" value="0">No
+        </div>
+
+        <div class="form-group">
+          <label for="onion">Would you like Onions?</label><br>
+          <input type="radio" name="onion" value="1" checked>Yes<br>
+          <input type="radio" name="onion" value="0">No
+        </div>
+
+        <button type="submit">Add your Order</button>
+      </form>
+    </div>
+
+    <div class="col-lg-3 text-center">
+    </div>
+
+  </div>
+
+  <div class="row eatBurger">
+
+    <div class="col-lg-6 text-center">
+
+      <h2>Eat My Burgers!</h2>
+
+      <h2>Order Ready!</h2>
+
+      <ul style="list-style: none">
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <li>
+              {{this.name}}
+              {{#if this.meat}}
+                With Beef
+              {{/if}}
+              {{#unless this.meat}}
+                With Chicken
+              {{/unless}}
+              {{#if this.onion}}
+                & Onions
+              {{/if}}
+              {{#if this.cheese}}
+                & Cheese
+              {{/if}}
+
+              <form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit" id="eatBtn">Eat the Burger!</button>
+              </form>
+
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+
+    </div>
+
+    <div class="col-lg-6 text-center">
+
+      <h2>Burgers that are IN MY BELLY!</h2>
+
+      <ul style="list-style: none">
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.name}}
+              {{#if this.meat}}
+                With Beef
+              {{/if}}
+              {{#unless this.meat}}
+                With Chicken
+              {{/unless}}
+              {{#if this.onion}}
+                & Onions
+              {{/if}}
+              {{#if this.cheese}}
+                & Cheese
+              {{/if}}
+
+              <form action="/{{this.id}}?_method=DELETE" method="POST">
+                <button type="submit" id="poopBtn">POOP!</button>
+              </form>
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>
