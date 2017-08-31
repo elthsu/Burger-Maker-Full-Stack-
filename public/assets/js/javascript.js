@@ -3,6 +3,7 @@ function add() {
 fx = new Audio();
 fx.src = "assets/sounds/bell.mp3";
 fx.play();
+localStorage.clear();
 }
 
 function eat() {
@@ -10,6 +11,7 @@ function eat() {
 fx = new Audio();
 fx.src = "assets/sounds/chew.wav";
 fx.play();
+localStorage.clear();
 }
 
 function flush() {
@@ -17,21 +19,19 @@ function flush() {
 fx = new Audio();
 fx.src = "assets/sounds/flush.mp3";
 fx.play();
+localStorage.clear();
 
 }
 
 $(document).ready(function() {
     if (localStorage.sound === "flush"){
       flush();
-      localStorage.clear();
     }
     else if (localStorage.sound === "add"){
       add();
-      localStorage.clear();
     }
     else if (localStorage.sound === "eat"){
       eat();
-      localStorage.clear();
     }
 });
 
