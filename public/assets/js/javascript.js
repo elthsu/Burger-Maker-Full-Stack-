@@ -3,7 +3,7 @@ function add() {
 fx = new Audio();
 fx.src = "assets/sounds/bell.mp3";
 fx.play();
-localStorage.clear();
+localStorage.clear("sound3");
 }
 
 function eat() {
@@ -11,7 +11,7 @@ function eat() {
 fx = new Audio();
 fx.src = "assets/sounds/chew.wav";
 fx.play();
-localStorage.clear();
+localStorage.clear("sound2");
 }
 
 function flush() {
@@ -19,18 +19,18 @@ function flush() {
 fx = new Audio();
 fx.src = "assets/sounds/flush.mp3";
 fx.play();
-localStorage.clear();
+localStorage.clear("sound");
 
 }
 
 $(document).ready(function() {
-    if (localStorage.sound === "flush"){
+    if (localStorage.sound3 === "flush"){
       flush();
     }
     else if (localStorage.sound === "add"){
       add();
     }
-    else if (localStorage.sound === "eat"){
+    else if (localStorage.sound2 === "eat"){
       eat();
     }
 });
@@ -40,9 +40,9 @@ $('#addBtn').on("click", function(event){
 });
 
 $('#eatBtn').on("click", function(event){
-  localStorage.setItem("sound", "eat");
+  localStorage.setItem("sound2", "eat");
 });
 
 $('#poopBtn').on("click", function(event){
-  localStorage.setItem("sound", "flush");
+  localStorage.setItem("sound3", "flush");
 });
